@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -27,6 +28,9 @@ public class MainActivity extends AppCompatActivity implements NetworkUtils.Quer
 
     @BindView(R.id.rv_recipe_step)
     RecyclerView rvRecipeList;
+
+    @BindView(R.id.progressbar)
+    ProgressBar mProgressBar;
 
     NetworkUtils.ApiCallerTask apiCaller;
     RecipeListAdapter recipeListAdapter;
@@ -56,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements NetworkUtils.Quer
     @Override
     protected void onStart() {
         super.onStart();
-        apiCaller = new NetworkUtils.ApiCallerTask(this, this, null);
+        apiCaller = new NetworkUtils.ApiCallerTask(this, this, mProgressBar);
         apiCaller.execute();
     }
 
