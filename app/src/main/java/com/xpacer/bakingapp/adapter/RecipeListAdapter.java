@@ -77,7 +77,6 @@ public class RecipeListAdapter extends RecyclerView.Adapter<RecipeListAdapter.Re
             recipeCardLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //TODO: Open the next activity here
                     recipeClickListener.onRecipeClick(recipe);
                 }
             });

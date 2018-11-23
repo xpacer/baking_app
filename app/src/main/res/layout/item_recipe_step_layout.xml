@@ -8,12 +8,14 @@
 
     <TextView
         android:id="@+id/tv_recipe_step_name"
-        style="@style/Base.TextAppearance.AppCompat.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:drawablePadding="5dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
         tools:text="Recipe Ingredients" />
 
     <View

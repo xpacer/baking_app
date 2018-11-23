@@ -37,6 +37,9 @@ public class RecipeStepDetailFragment extends Fragment {
     @BindView(R.id.tv_step_description)
     TextView tvDescription;
 
+    @BindView(R.id.tv_step_summary)
+    TextView tvSummary;
+
     @BindView(R.id.tv_previous)
     TextView mPreviousBtn;
 
@@ -104,6 +107,7 @@ public class RecipeStepDetailFragment extends Fragment {
 
     private void setupView() {
         tvDescription.setText(recipeStep.getDescription());
+        tvSummary.setText(recipeStep.getShortDescription());
         if (recipeStep.getVideoUrl().isEmpty()) {
             mPlayerView.setVisibility(View.GONE);
         } else {
@@ -123,6 +127,10 @@ public class RecipeStepDetailFragment extends Fragment {
                 clickListener.onRecipeStepButtonClicked(mStepIndex + 1);
             }
         });
+
+        if (mStepIndex == 0) {
+            mPreviousBtn.setVisibility(View.GONE);
+        }
 
         initializePlayer();
     }
