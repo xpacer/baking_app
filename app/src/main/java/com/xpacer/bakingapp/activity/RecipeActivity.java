@@ -147,18 +147,6 @@ public class RecipeActivity extends AppCompatActivity implements
 
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        int count = getFragmentManager().getBackStackEntryCount();
-//
-//        if (count == 0) {
-//            super.onBackPressed();
-//        } else {
-//            getFragmentManager().popBackStack();
-//        }
-//
-//    }
-
     @Override
     public void onRecipeStepButtonClicked(int position) {
         onItemSelected(position + 1);
