@@ -1,5 +1,6 @@
 package com.xpacer.bakingapp.widget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
@@ -9,6 +10,8 @@ import android.widget.RemoteViews;
 
 import com.google.gson.Gson;
 import com.xpacer.bakingapp.R;
+import com.xpacer.bakingapp.activity.MainActivity;
+import com.xpacer.bakingapp.activity.RecipeActivity;
 import com.xpacer.bakingapp.adapter.IngredientWidgetListAdapterService;
 import com.xpacer.bakingapp.data.Recipe;
 import com.xpacer.bakingapp.utils.Constants;
@@ -23,10 +26,17 @@ public class BakingAppWidgetProvider extends AppWidgetProvider {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.baking_app_widget_provider);
 
+        Intent intent = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
+
+        views.setOnClickPendingIntent(R.id.widget_recipe_name, pendingIntent);
+
         if (recipe == null) {
             CharSequence widgetText = context.getString(R.string.recipe_ingredients);
             views.setTextViewText(R.id.widget_recipe_name, widgetText);
             views.setViewVisibility(R.id.tv_empty_state, View.VISIBLE);
+            views.setOnClickPendingIntent(R.id.tv_empty_state, pendingIntent);
+
         } else {
             views.setViewVisibility(R.id.tv_empty_state, View.GONE);
             views.setTextViewText(R.id.widget_recipe_name, recipe.getName().concat(" Ingredients"));
