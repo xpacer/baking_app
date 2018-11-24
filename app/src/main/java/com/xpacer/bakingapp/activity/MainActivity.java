@@ -2,6 +2,7 @@ package com.xpacer.bakingapp.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.xpacer.bakingapp.data.RecipeStep;
 import com.xpacer.bakingapp.utils.Constants;
 import com.xpacer.bakingapp.utils.NetworkUtils;
 import com.xpacer.bakingapp.utils.Prefs;
+import com.xpacer.bakingapp.widget.BakingAppWidgetProvider;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -91,5 +93,12 @@ public class MainActivity extends AppCompatActivity implements NetworkUtils.Quer
         intent.putParcelableArrayListExtra(Constants.ARG_RECIPE_INGREDIENTS, recipeIngredients);
 
         startActivity(intent);
+        sendBroadcast();
+    }
+
+    void sendBroadcast() {
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction(BakingAppWidgetProvider.ACTION_APP_UPDATE);
+        LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
     }
 }

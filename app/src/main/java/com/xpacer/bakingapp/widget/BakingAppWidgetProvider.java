@@ -11,7 +11,6 @@ import android.widget.RemoteViews;
 import com.google.gson.Gson;
 import com.xpacer.bakingapp.R;
 import com.xpacer.bakingapp.activity.MainActivity;
-import com.xpacer.bakingapp.activity.RecipeActivity;
 import com.xpacer.bakingapp.adapter.IngredientWidgetListAdapterService;
 import com.xpacer.bakingapp.data.Recipe;
 import com.xpacer.bakingapp.utils.Constants;
@@ -20,6 +19,8 @@ import com.xpacer.bakingapp.utils.Constants;
  * Implementation of App Widget functionality.
  */
 public class BakingAppWidgetProvider extends AppWidgetProvider {
+
+    public static final String ACTION_APP_UPDATE = "android.appwidget.action.APPWIDGET_UPDATE";
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId, Recipe recipe) {
@@ -75,6 +76,7 @@ public class BakingAppWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
+        BakingAppWidgetService.updateWidget(context);
     }
 }
 
